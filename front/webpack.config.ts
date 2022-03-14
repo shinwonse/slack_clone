@@ -48,10 +48,7 @@ const config: Configuration = {
           ],
           env: {
             development: {
-              plugins: ['emotion', { sourceMap: true }, require.resolve('react-refresh/babel')],
-            },
-            production: {
-              plugins: ['@emotion'],
+              plugins: [require.resolve('react-refresh/babel')],
             },
           },
         },
