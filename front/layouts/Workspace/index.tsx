@@ -1,9 +1,20 @@
-import { Header, RightMenu, ProfileImg } from '@layouts/Workspace/styles';
+import {
+  Header,
+  RightMenu,
+  ProfileImg,
+  WorkspaceWrapper,
+  Workspaces,
+  Channels,
+  Chats,
+  WorkspaceName,
+  MenuScroll,
+} from '@layouts/Workspace/styles';
 import fetcher from '@utils/fetcher';
 import axios from 'axios';
 import React, { FC, useCallback } from 'react';
 import { Redirect } from 'react-router';
 import useSWR from 'swr';
+import gravatar from 'gravatar';
 
 const Workspace: FC = ({ children }) => {
   const { data, error, mutate } = useSWR('http://localhost:3095/api/users', fetcher, {
@@ -29,11 +40,19 @@ const Workspace: FC = ({ children }) => {
       <Header>
         <RightMenu>
           <span>
-            <ProfileImg src="" alt={data.nickname} />
+            <ProfileImg src={gravatar.url(data.email, { s: '28px', d: 'retro' })} alt={data.nickname} />
           </span>
         </RightMenu>
       </Header>
       <button onClick={onLogout}>로그아웃</button>
+      <WorkspaceWrapper>
+        <Workspaces>test</Workspaces>
+        <Channels>
+          <WorkspaceName>Sleact</WorkspaceName>
+          <MenuScroll>menu scroll</MenuScroll>
+        </Channels>
+        <Chats></Chats>
+      </WorkspaceWrapper>
       {children}
     </div>
   );
