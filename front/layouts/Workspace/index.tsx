@@ -1,3 +1,4 @@
+import { Header, RightMenu, ProfileImg } from '@layouts/Workspace/styles';
 import fetcher from '@utils/fetcher';
 import axios from 'axios';
 import React, { FC, useCallback } from 'react';
@@ -25,6 +26,13 @@ const Workspace: FC = ({ children }) => {
 
   return (
     <div>
+      <Header>
+        <RightMenu>
+          <span>
+            <ProfileImg src="" alt={data.nickname} />
+          </span>
+        </RightMenu>
+      </Header>
       <button onClick={onLogout}>로그아웃</button>
       {children}
     </div>
